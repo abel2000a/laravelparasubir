@@ -69,11 +69,11 @@ Route::post('empresa', 'EmpresaController@create');
 Route::put('empresa/{id}', 'EmpresaController@update');
 Route::delete('empresa/{id}', 'EmpresaController@destroy');
 
-Route::get('comentario', 'ComentariosController@index');
-Route::get('comentario/{id}', 'ComentariosController@show');
-Route::post('comentario', 'ComentariosController@create');
-Route::put('comentario/{id}', 'ComentariosController@update');
-Route::delete('comentario/{id}', 'ComentariosController@destroy');
+Route::get('comentario', 'ComentarioController@index');
+Route::get('comentario/{comentario_id}', 'ComentarioController@show');
+Route::post('comentario', 'ComentarioController@create');
+Route::put('comentario/{comentario_id}', 'ComentarioController@update');
+Route::delete('comentario/{comentario_id}', 'ComentarioController@destroy');
 
 Route::get('oferta', 'OfertaController@index');
 Route::get('oferta/{id}', 'OfertaController@show');

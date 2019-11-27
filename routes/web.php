@@ -55,8 +55,8 @@ Route::get('formacion/show/{id}',"FormacionController@show");
 Route::get('empresa/index',"EmpresaController@index");
 Route::get('empresa/show/{id}',"EmpresaController@show"); 
 
-Route::get('comentario/index',"ComentariosController@index");
-Route::get('comentario/show/{id}',"ComentariosController@show"); 
+Route::get('comentario/index',"ComentarioController@index");
+Route::get('comentario/show/{comentario_id}',"ComentarioController@show"); 
 
 Route::get('oferta/index',"OfertaController@index");
 Route::get('oferta/show/{id}',"OfertaController@show"); 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Comentario;
+use Illuminate\Support\Facades\DB;
 
 class ComentarioController extends Controller
 {
@@ -16,17 +17,11 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        //
-        //if($clientes.usuario=="alum"){
-        //}
-        $comentario = Comentario::all(); 
-        //foreach($clientes as $cliente){
-        //    echo $cliente->nombre."</br>";        
-        //}
-        // return response()->json(['success' => true,
-        //    'data' => $clientes,
-        //    'message' => 'Operacion Correcta'], 200);
-        return response()->json($comentario);
+        $sugerencia = DB::table('comentarios_sugerencia')
+        ->join('persona' , 'persona.persona_id' , 'comentarios_sugerencia.persona_id')
+        ->select('comentarios_sugerencia.*','persona.persona_nombre','persona.persona_celular')
+        ->get();
+        return response()->json($sugerencia);
     }
 
     /**
@@ -60,10 +55,10 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($comentario_id)
     {
         //
-        $comentario= Comentario::findOrFail($id);
+        $comentario= Comentario::findOrFail($comentario_id);
         //echo "$cliente->nombre<br>";
         //echo "$cliente->apellido<br>";
         //echo "$cliente->telefono<br>";
@@ -77,7 +72,7 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($comentario_id)
     {
         //
     }
@@ -89,10 +84,10 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $comentario_id)
     {
         
-        Comentario::findOrFail($id)->update($request->all());
+        Comentario::findOrFail($comentario_id)->update($request->all());
             return response()->json(['success' => true]);
         
  
@@ -105,9 +100,9 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($comentario_id)
     {
-        Comentario::findOrFail($id)->delete();
+        Comentario::findOrFail($comentario_id)->delete();
         return response()->json(['success' => true]);
     }
 }
